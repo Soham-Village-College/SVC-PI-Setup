@@ -1,0 +1,26 @@
+#!/bin/bash
+
+cd ~/
+
+sudo echo "auto lo" > /etc/network/interfaces
+sudo echo "iface lo inet loopback" >> /etc/network/interfaces
+sudo echo "iface eth0 inet dhcp" >> /etc/network/interfaces
+sudo echo "allow-hotplug wlan0" >> /etc/network/interfaces
+sudo echo "auto wlan0" >> /etc/network/interfaces
+sudo echo "	wpa-scan-ssid 1" >> /etc/network/interfaces
+sudo echo "	wpa-ap-scan 1" >> /etc/network/interfaces
+sudo echo "	wpa-ssid "SVC_PI" >> /etc/network/interfaces
+sudo echo "	wpa-psk "r@spberry" >> /etc/network/interfaces
+
+#Download Sonic Pi
+wget http://sonic-pi.net/sonic-pi-RC2.tar.gz
+tar xvfz  sonic-pi-RC2.tar.gz
+rm sonic-pi-RC2.tar.gz
+
+echo "[Desktop Entry]" >> ~/Desktop/sonic-pi.desktop
+echo "Name=sonic-pi v2" >> ~/Desktop/sonic-pi.desktop
+echo "Comment = Sonic Pi" >> ~/Desktop/sonic-pi.desktop
+echo "Exec=~/sonic-pi/bin/sonic-pi" >> ~/Desktop/sonic-pi.desktop
+echo "Icon=~/sonic-pi/app/gui/qt/images/icon.png" >> ~/Desktop/sonic-pi.desktop
+echo "Terminal=false" >> ~/Desktop/sonic-pi.desktop
+echo "Type=Application" >> ~/Desktop/sonic-pi.desktop
